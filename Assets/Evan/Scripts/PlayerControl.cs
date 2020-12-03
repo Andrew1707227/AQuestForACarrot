@@ -71,6 +71,10 @@ public class PlayerControl : MonoBehaviour
     private bool canJump;
     //Holds if the player can walk on slope
     private bool canWalkOnSlope;
+    //Holds if to high slope to the left
+    private bool highLeft;
+    //Holds if to high slope to the right
+    private bool highRight;
 
     //--Private Vector2s
     //Temporally Holds new velocitys
@@ -136,6 +140,25 @@ public class PlayerControl : MonoBehaviour
             isOnSlope = false;
         }
 
+        //Toggles highRight
+        if (slopeHitFront)
+        {
+            highRight = true;
+        }
+        else 
+        {
+            highRight = false;
+        }
+
+        //Toggles highLeft
+        if (slopeHitBack)
+        {
+            highLeft = true;
+        }
+        else
+        {
+            highLeft = false;
+        }
     }
 
     private void SlopeCheckVertical(Vector2 checkPos)
@@ -158,7 +181,6 @@ public class PlayerControl : MonoBehaviour
             Debug.DrawRay(hit.point, hit.normal, Color.green);
         }
 
-        Debug.Log(slopeSideAngle);
         if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
         {
             canWalkOnSlope = false;
@@ -168,7 +190,7 @@ public class PlayerControl : MonoBehaviour
             canWalkOnSlope = true;
         }
 
-        if (isOnSlope && xInput == 0.0f && canWalkOnSlope)
+        if (isOnSlope && xInput == 0.0f) // && canWalkOnSlope)
         {
             rb2.sharedMaterial = fullFriction;
         }
@@ -178,30 +200,19 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void CheckInput()
-    {
-        xInput = Input.GetAxisRaw("Horizontal");
-
-        if (xInput == -facingDirection)
-        {
-            facingDirection *= -1;
-            sr.flipX = !sr.flipX;
-        }
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
-    }
-
     private void Jump()
     {
+        //Jumps if canJump is true
         if (canJump)
         {
+            //Toggles can jump and is jumping
             canJump = false;
             isJumping = true;
+
+            //Sets x and y velocity to 0
             newVelocity.Set(0.0f, 0.0f);
             rb2.velocity = newVelocity;
+            //Adds jump force
             newForce.Set(0.0f, jumpForce);
             rb2.AddForce(newForce, ForceMode2D.Impulse);
         }
@@ -209,18 +220,39 @@ public class PlayerControl : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (grounded && !isOnSlope && !isJumping)
+        if ((grounded && !isOnSlope && !isJumping))
         {
+            //Applies flat movement
             newVelocity.Set(movementSpeed * xInput, 0.0f);
             rb2.velocity = newVelocity;
         }
         else if (grounded && isOnSlope && !isJumping && canWalkOnSlope)
         {
-            newVelocity.Set(movementSpeed * slopeNormalPerp.x *-xInput, movementSpeed * slopeNormalPerp.y * -xInput);
+            //Applies slope movement
+            newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
             rb2.velocity = newVelocity;
+        }
+        else if (grounded && isOnSlope && !isJumping && !canWalkOnSlope && highLeft)
+        {
+            //Applies Right only slope movement
+            if (-xInput <= 0)
+            {
+                newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
+                rb2.velocity = newVelocity;
+            }
+        }
+        else if (grounded && isOnSlope && !isJumping && !canWalkOnSlope && highRight)
+        {
+            //Applies Left only slope movement
+            if (-xInput >= 0)
+            {
+                newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
+                rb2.velocity = newVelocity;
+            }
         }
         else if (!grounded)
         {
+            //Applies air movement
             newVelocity.Set(movementSpeed * xInput, rb2.velocity.y);
             rb2.velocity = newVelocity;
         }
@@ -228,21 +260,53 @@ public class PlayerControl : MonoBehaviour
 
     private void CheckGround()
     {
+        //Checks for ground on LayerMask layer within a sphere
         grounded = Physics2D.OverlapCircle(groundCheckTrans.position, groundCheckRadius, whatIsGround);
 
-        if (rb2.velocity.y <= 0.0f)
+        //If they player can jump and is falling or grounded reset is jumping
+        if (canJump)
         {
-            isJumping = false;
+            if (rb2.velocity.y <= 0.0f || grounded)
+            {
+                isJumping = false;
+            }
         }
 
-        if (grounded && !isJumping && slopeDownAngle <= maxSlopeAngle)
+        //Toggles can jump
+        if (grounded && slopeDownAngle <= maxSlopeAngle)
         {
             canJump = true;
+        }
+        else
+        {
+            canJump = false;
+        }
+
+    }
+
+    //Checks for inputs
+    private void CheckInput()
+    {
+        //Logs xInput to varible
+        xInput = Input.GetAxisRaw("Horizontal");
+
+        //Flips player
+        if (xInput == -facingDirection)
+        {
+            facingDirection *= -1;
+            sr.flipX = !sr.flipX;
+        }
+
+        //Jumps when jump is pressed
+        if (Input.GetButtonDown("Jump"))
+        {
+            Jump();
         }
     }
 
     private void OnDrawGizmos()
     {
+        //Draws ground detection sphere on screen
         Gizmos.DrawWireSphere(groundCheckTrans.position, groundCheckRadius);
     }
 }
