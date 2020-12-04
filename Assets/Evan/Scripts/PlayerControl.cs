@@ -51,8 +51,6 @@ public class PlayerControl : MonoBehaviour
     private float xInput;
     //Holds downwards slope angle
     private float slopeDownAngle;
-    //Holds old downwards slope angle
-    private float slopeDownAngleOld;
     //Holds sideways slope angle
     private float slopeSideAngle;
 
@@ -94,6 +92,7 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Get component References
         rb2 = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
@@ -103,41 +102,55 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Activate input check
         CheckInput();
     }
 
     private void FixedUpdate()
     {
+        //Activate the ground check, movment, and slope check
         CheckGround();
         ApplyMovement();
         SlopeCheck();
+
+        //Checks if slope angle is a slope
+        if (slopeDownAngle != 0.0f || slopeSideAngle != 0.0f)
+        {
+            isOnSlope = true;
+        }
+        else
+        {
+            isOnSlope = false;
+        }
     }
 
     private void SlopeCheck()
     {
+        //Activate Vertical and Horizontal checks and give them a starting point
         SlopeCheckVertical(checkPos.position);
         SlopeCheckHorizontal(checkPos.position);
     }
 
     private void SlopeCheckHorizontal(Vector2 checkPos)
     {
+        //Sends two rays out, one right one left
         RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, Vector2.right, slopeCheckDistance, whatIsGround);
         RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -Vector2.right, slopeCheckDistance, whatIsGround);
 
         if (slopeHitFront)
         {
-            isOnSlope = true;
+            //If hit right, calculate the side angle
             slopeSideAngle = Vector2.Angle(slopeHitFront.normal, Vector2.up);
         }
         else if (slopeHitBack)
         {
-            isOnSlope = true;
+            //If hit left, calculate the side angle
             slopeSideAngle = Vector2.Angle(slopeHitBack.normal, Vector2.up);
         }
         else
         {
+            //If no hit, set side angle to 0
             slopeSideAngle = 0.0f;
-            isOnSlope = false;
         }
 
         //Toggles highRight
@@ -159,24 +172,24 @@ public class PlayerControl : MonoBehaviour
         {
             highLeft = false;
         }
+
     }
 
     private void SlopeCheckVertical(Vector2 checkPos)
     {
+        //Sends ray down
         RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, whatIsGround);
+
+        //If something is hit by the ray
         if (hit)
         {
+            //Get the Vertor of the slopes surface
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
 
+            //Get the angle of the slope
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
 
-            if (slopeDownAngle != slopeDownAngleOld)
-            {
-                isOnSlope = true;
-            }
-
-            slopeDownAngleOld = slopeDownAngle;
-
+            //Draws ray and slope Vector
             Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
             Debug.DrawRay(hit.point, hit.normal, Color.green);
         }
