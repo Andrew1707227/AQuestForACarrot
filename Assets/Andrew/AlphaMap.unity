@@ -825,7 +825,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &749487084
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -943,9 +943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnowballTemplate: {fileID: 1765275433}
-  offset: {x: 2, y: 2, z: 0}
   CoolDown: 0.5
-  forceCap: 0
 --- !u!82 &749487089
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1651,6 +1649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccba4a4d95b3db9449ba7ea598ef1da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  airTime: 0.05
+  force: {x: 400, y: 40}
+  player: {fileID: 749487079}
+  offset: {x: 0.75, y: 1, z: 0}
+  offMap: -200
 --- !u!1 &1800230334
 GameObject:
   m_ObjectHideFlags: 0
