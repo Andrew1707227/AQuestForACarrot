@@ -8,9 +8,6 @@ public class PlayerControl : MonoBehaviour
     //Holds speed
     [SerializeField]
     private float movementSpeed = 4;
-    //Holds max speed
-    [SerializeField]
-    private float maxSpeed = 4;
     //Holds jump force
     [SerializeField]
     private float jumpForce;
@@ -23,6 +20,8 @@ public class PlayerControl : MonoBehaviour
     //Holds max slope angle the player can climb
     [SerializeField]
     private float maxSlopeAngle;
+    [SerializeField]
+    private float slowDownTime;
 
     //--Serialized Transforms
     //Holds loction for ground check sphere
@@ -49,10 +48,16 @@ public class PlayerControl : MonoBehaviour
     //--Private floats
     //Holds x-input
     private float xInput;
+    //Holds last xInput
+    private float oldxInput;
     //Holds downwards slope angle
     private float slopeDownAngle;
     //Holds sideways slope angle
     private float slopeSideAngle;
+    //Holds current turn around times count for left
+    private float turnAroundTimerLeft = 0.01f;
+    //Holds current turn around times count for right
+    private float turnAroundTimerRight = 0.01f;
 
     //--Private ints
     //Holds current facing (1 = right)
@@ -73,6 +78,10 @@ public class PlayerControl : MonoBehaviour
     private bool highLeft;
     //Holds if to high slope to the right
     private bool highRight;
+    //Holds if the player is in turn around slow left
+    private bool turnAroundSlowLeft = false;
+    //Holds if the player is in turn around slow right
+    private bool turnAroundSlowRight = false;
 
     //--Private Vector2s
     //Temporally Holds new velocitys
@@ -110,7 +119,7 @@ public class PlayerControl : MonoBehaviour
     {
         //Activate the ground check, movment, and slope check
         CheckGround();
-        ApplyMovement();
+        GetMovement();
         SlopeCheck();
 
         //Checks if slope angle is a slope
@@ -231,44 +240,133 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    private void ApplyMovement()
+    private void GetMovement()
     {
         if ((grounded && !isOnSlope && !isJumping))
         {
-            //Applies flat movement
+            //Gets flat movement
             newVelocity.Set(movementSpeed * xInput, 0.0f);
-            rb2.velocity = newVelocity;
+            //Sends newVelocity to ApplyMovement
+            ApplyMovement(newVelocity, false);
         }
         else if (grounded && isOnSlope && !isJumping && canWalkOnSlope)
         {
-            //Applies slope movement
+            //Gets slope movement
             newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
-            rb2.velocity = newVelocity;
+            //Sends newVelocity to ApplyMovement
+            ApplyMovement(newVelocity, true);
         }
         else if (grounded && isOnSlope && !isJumping && !canWalkOnSlope && highLeft)
         {
-            //Applies Right only slope movement
+            //Gets Right only slope movement
             if (-xInput <= 0)
             {
                 newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
-                rb2.velocity = newVelocity;
+                //Sends newVelocity to ApplyMovement
+                ApplyMovement(newVelocity, true);
             }
         }
         else if (grounded && isOnSlope && !isJumping && !canWalkOnSlope && highRight)
         {
-            //Applies Left only slope movement
+            //Gets Left only slope movement
             if (-xInput >= 0)
             {
                 newVelocity.Set(movementSpeed * slopeNormalPerp.x * -xInput, movementSpeed * slopeNormalPerp.y * -xInput);
-                rb2.velocity = newVelocity;
+                //Sends newVelocity to ApplyMovement
+                ApplyMovement(newVelocity, true);
             }
         }
         else if (!grounded)
         {
-            //Applies air movement
+            //Gets air movement
             newVelocity.Set(movementSpeed * xInput, rb2.velocity.y);
-            rb2.velocity = newVelocity;
+            //Sends newVelocity to ApplyMovement
+            ApplyMovement(newVelocity, false);
         }
+    }
+
+    public void ApplyMovement(Vector2 velocityToUse, bool effectY)
+    {
+        //Checks for changes in xInput
+        if ((oldxInput != xInput && xInput != 0.0f) && xInput == -1f)
+        {
+            //Turns on slow left
+            turnAroundSlowLeft = true;
+
+            //Turns off slow right
+            turnAroundSlowRight = false;
+            turnAroundTimerRight = 0.01f;
+        }
+        else if ((oldxInput != xInput && xInput != 0.0f) && xInput == 1f)
+        {
+            //Turns on slow right
+            turnAroundSlowRight = true;
+
+            //Turns off slow left
+            turnAroundSlowLeft = false;
+            turnAroundTimerLeft = 0.01f;
+        }
+
+        //Checks if slow down changes are needed
+        if (turnAroundSlowLeft)
+        {
+            //Slows down x speed
+            velocityToUse.Set(velocityToUse.x * (turnAroundTimerLeft / slowDownTime), velocityToUse.y);
+
+            if (effectY)
+            {
+                //Slows down y speed
+                velocityToUse.Set(velocityToUse.x , velocityToUse.y * (turnAroundTimerLeft / slowDownTime));
+            }
+
+            //Sets velocity to velocityToUse
+            rb2.velocity = velocityToUse;
+
+            //increments turnAroundCounter
+            turnAroundTimerLeft += Time.deltaTime;
+
+            //Checks if turnAroundTime is done
+            if (turnAroundTimerLeft >= slowDownTime)
+            {
+                //Turns off slow turn around and resets timer
+                turnAroundSlowLeft = false;
+                turnAroundTimerLeft = 0.01f;
+            }
+        }
+        else if (turnAroundSlowRight)
+        {
+            //Slows down x speed
+            velocityToUse.Set(velocityToUse.x * (turnAroundTimerRight / slowDownTime), velocityToUse.y);
+
+            if (effectY)
+            {
+                //Slows down y speed
+                velocityToUse.Set(velocityToUse.x, velocityToUse.y * (turnAroundTimerRight / slowDownTime));
+            }
+
+            //Sets velocity to velocityToUse
+            rb2.velocity = velocityToUse;
+
+            //increments turnAroundCounter
+            turnAroundTimerRight += Time.deltaTime;
+
+            //Checks if turnAroundTime is done
+            if (turnAroundTimerRight >= slowDownTime)
+            {
+                //Turns off slow turn around and resets timer
+                turnAroundSlowRight = false;
+                turnAroundTimerRight = 0.01f;
+            }
+        }
+        else
+        {
+            //Debug.Log("Default");
+            //Sets velocity to velocityToUse
+            rb2.velocity = velocityToUse;
+        }
+
+        //Gets old xInput
+        oldxInput = xInput;
     }
 
     private void CheckGround()

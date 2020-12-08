@@ -893,11 +893,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
-  maxSpeed: 4
   jumpForce: 4
   groundCheckRadius: 0.24
   slopeCheckDistance: 0.5
   maxSlopeAngle: 46
+  slowDownTime: 0.2
   groundCheckTrans: {fileID: 1098456393}
   checkPos: {fileID: 462561090}
   whatIsGround:
@@ -1018,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1825284469
 Transform:
   m_ObjectHideFlags: 0
