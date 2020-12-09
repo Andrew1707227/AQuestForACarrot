@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 1237278704}
   - component: {fileID: 1237278708}
   m_Layer: 0
-  m_Name: TestPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1006,7 +1006,6 @@ MonoBehaviour:
   maxSlopeAngle: 46
   slowDownTime: 0.2
   fallMultiplier: 2
-  cashedTime: 0.1
   groundCheckTrans: {fileID: 1098456393}
   checkPos: {fileID: 462561090}
   whatIsGround:
