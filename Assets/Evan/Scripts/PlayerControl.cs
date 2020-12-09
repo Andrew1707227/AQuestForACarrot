@@ -20,8 +20,12 @@ public class PlayerControl : MonoBehaviour
     //Holds max slope angle the player can climb
     [SerializeField]
     private float maxSlopeAngle;
+    //Holds time to slow down for
     [SerializeField]
     private float slowDownTime;
+    //Holds fall multiplyer
+    [SerializeField]
+    public float fallMultiplier;
 
     //--Serialized Transforms
     //Holds loction for ground check sphere
@@ -121,6 +125,7 @@ public class PlayerControl : MonoBehaviour
         CheckGround();
         GetMovement();
         SlopeCheck();
+        DownSpeedManager();
 
         //Checks if slope angle is a slope
         if (slopeDownAngle != 0.0f || slopeSideAngle != 0.0f)
@@ -227,13 +232,27 @@ public class PlayerControl : MonoBehaviour
         //Jumps if canJump is true
         if (canJump)
         {
+            Debug.Log("Jumping");
+
             //Toggles can jump and is jumping
             canJump = false;
             isJumping = true;
 
-            //Sets x and y velocity to 0
-            newVelocity.Set(0.0f, 0.0f);
-            rb2.velocity = newVelocity;
+
+            //Checks for upwards movement
+            if (rb2.velocity.y > 0)
+            {
+                //Sets x velocity to 0
+                newVelocity.Set(0.0f, rb2.velocity.y - (rb2.velocity.y / 3));
+                rb2.velocity = newVelocity;
+            }
+            else
+            {
+                //Sets x and y velocity to 0
+                newVelocity.Set(0.0f, 0.0f);
+                rb2.velocity = newVelocity;
+            }
+
             //Adds jump force
             newForce.Set(0.0f, jumpForce);
             rb2.AddForce(newForce, ForceMode2D.Impulse);
@@ -412,6 +431,20 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
+        }
+    }
+
+    //Manages downaward speed
+    private void DownSpeedManager()
+    {
+        //Speeds up normal fall or low jump fall
+        if (rb2.velocity.y < 0 && !grounded)
+        {
+            rb2.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb2.velocity.y > 0 && !Input.GetButton("Jump") && !grounded)
+        {
+            rb2.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
     }
 
