@@ -100,7 +100,7 @@ public class PlayerControl : MonoBehaviour
     private SpriteRenderer sr;
     private Animator ani;
     private BoxCollider2D bc2;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -136,6 +136,17 @@ public class PlayerControl : MonoBehaviour
         {
             isOnSlope = false;
         }
+
+        //Checks if moving for animator
+        if (rb2.velocity.x != 0.0f)
+        {
+            ani.SetBool("aniMoving", true);
+        }
+        else
+        {
+            ani.SetBool("aniMoving", false);
+        }
+
     }
 
     private void SlopeCheck()
