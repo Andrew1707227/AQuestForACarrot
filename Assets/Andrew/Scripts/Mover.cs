@@ -17,10 +17,18 @@ public class Mover : MonoBehaviour {
     // Update is called once per frame
     private void FixedUpdate() {
         rb2.velocity = new Vector2(Input.GetAxis("Horizontal") * speed,rb2.velocity.y);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (Input.GetAxis("Horizontal") < 0) {
             sr.flipX = false;
         } else if (Input.GetAxis("Horizontal") > 0) {
             sr.flipX = true;
         }
+        /*if (mousePos.x < transform.position.x) {
+            sr.flipX = false;
+        }
+        else if (mousePos.x > transform.position.x) {
+            sr.flipX = true;
+        }*/
     }
 }

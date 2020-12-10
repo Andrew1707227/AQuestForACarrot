@@ -775,9 +775,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.46471, y: -1.3860738}
+  m_Offset: {x: 0.012326241, y: -0.58000755}
   serializedVersion: 2
-  m_Radius: 2.0977533
+  m_Radius: 0.99645853
 --- !u!114 &749487081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -839,8 +839,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.21076441, y: 0.7022464}
-  m_Size: {x: 4.024892, y: 6.7000604}
+  m_Offset: {x: -0.08582592, y: 0.5205977}
+  m_Size: {x: 2.2757587, y: 3.7028575}
   m_Direction: 0
 --- !u!212 &749487085
 SpriteRenderer:
@@ -879,7 +879,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 5cc297902511dac4191dd2de94565e62, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 334023713b7a5bc4f9d17162ab42e7d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -899,7 +899,7 @@ Transform:
   m_GameObject: {fileID: 749487079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 2, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -917,10 +917,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5491841, y: 0.9010315}
+  m_Offset: {x: -0.07550597, y: 0.41088843}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.526, y: 0.33}
     oldSize: {x: 19.2, y: 10.8}
     newSize: {x: 19.2, y: 10.8}
     adaptiveTilingThreshold: 0.5
@@ -928,7 +928,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6044002, y: 7.142763}
+  m_Size: {x: 2.35502, y: 3.7180676}
   m_EdgeRadius: 0
 --- !u!114 &749487088
 MonoBehaviour:
@@ -945,6 +945,7 @@ MonoBehaviour:
   SnowballTemplate: {fileID: 1765275433}
   CoolDown: 0.3
   crosshair: {fileID: 2800000, guid: a079abaf13e4b2c40862348f991f45e3, type: 3}
+  crosshairGrayScale: {fileID: 2800000, guid: 74808d1bd0a3e53429c18bbb28aad5c2, type: 3}
   crosshairPos: {x: 37.5, y: 50}
 --- !u!82 &749487089
 AudioSource:

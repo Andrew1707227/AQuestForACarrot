@@ -34,7 +34,7 @@ public class SnowballLogic : MonoBehaviour {
         sr = player.GetComponent<SpriteRenderer>();
 
         Vector3 playerPos = player.transform.position;
-        Vector3 mousePos = Input.mousePosition;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         direction = sr.flipX;
         timer = 0;
@@ -46,7 +46,6 @@ public class SnowballLogic : MonoBehaviour {
             } else {
                 transform.position = playerPos + offset;
             }
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
             force = (mousePos - playerPos) * scalar;
         }
     }
@@ -55,11 +54,7 @@ public class SnowballLogic : MonoBehaviour {
         if (gameObject.name == "SnowballClone") { 
             timer += Time.deltaTime;
             if (timer < airTime) {
-                /*if (!direction) {
-                    rb2.AddForce(new Vector2(-force.x, force.y));
-                } else {*/
                     rb2.AddForce(force);
-                //}
             }
             if(transform.position.y < offMap) {
                 Destroy(gameObject);
