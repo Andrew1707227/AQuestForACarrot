@@ -126,6 +126,7 @@ public class PlayerControl : MonoBehaviour
         GetMovement();
         SlopeCheck();
         DownSpeedManager();
+        animationManager();
 
         //Checks if slope angle is a slope
         if (slopeDownAngle != 0.0f || slopeSideAngle != 0.0f)
@@ -137,6 +138,10 @@ public class PlayerControl : MonoBehaviour
             isOnSlope = false;
         }
 
+    }
+
+    private void animationManager()
+    {
         //Checks if moving for animator
         if (rb2.velocity.x != 0.0f)
         {
@@ -147,6 +152,23 @@ public class PlayerControl : MonoBehaviour
             ani.SetBool("aniMoving", false);
         }
 
+        //Checks if jumping for animator
+        if (!grounded && rb2.velocity.y > 0.0f)
+        {
+            ani.SetBool("aniGoingUp", true);
+            ani.SetBool("aniGoingDown", false);
+
+        }
+        else if (!grounded && rb2.velocity.y < 0.0f)
+        {
+            ani.SetBool("aniGoingDown", true);
+            ani.SetBool("aniGoingUp", false);
+        }
+        else
+        {
+            ani.SetBool("aniGoingUp", false);
+            ani.SetBool("aniGoingDown", false);
+        }
     }
 
     private void SlopeCheck()
@@ -243,7 +265,6 @@ public class PlayerControl : MonoBehaviour
         //Jumps if canJump is true
         if (canJump)
         {
-            Debug.Log("Jumping");
 
             //Toggles can jump and is jumping
             canJump = false;
