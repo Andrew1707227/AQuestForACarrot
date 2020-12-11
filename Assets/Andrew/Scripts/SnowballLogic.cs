@@ -16,6 +16,7 @@ public class SnowballLogic : MonoBehaviour {
 
     private bool direction;
     public Vector3 offset; //So the snowball is in player's hand
+    private ParticleSystem PS;
 
     public float offMap;
 
@@ -25,13 +26,16 @@ public class SnowballLogic : MonoBehaviour {
             //kill the enemy
         }
         if (collision.tag != "Player") {
-            Destroy(gameObject);
+            PS.Play();
+            rb2.velocity = new Vector2();
+            GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
     void Start() {
         rb2 = GetComponent<Rigidbody2D>();
         sr = player.GetComponent<SpriteRenderer>();
+        PS = GetComponent<ParticleSystem>();
 
         Vector3 playerPos = player.transform.position;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
