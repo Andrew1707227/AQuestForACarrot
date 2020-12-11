@@ -35,7 +35,7 @@ public class CreateSnowball : MonoBehaviour {
         float dx = transform.position.x - mousePos.x;
         bool flip = sr.flipX;
 
-        if ((dx > 0 && !flip) || (dx < 0 && flip) && TimeRemaining >= CoolDown) {
+        if ((dx > 0 && !flip || dx < 0 && flip) && TimeRemaining >= CoolDown) {
             Cursor.SetCursor(crosshair, crosshairPos, CursorMode.Auto);
             if (Input.GetButton("Fire1") && TimeRemaining >= CoolDown) {
                 TimeRemaining = 0;
