@@ -21,10 +21,6 @@ public class SnowballLogic : MonoBehaviour {
     public float offMap;
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Enemy") {
-            GameObject currEnemy = collision.gameObject;
-            //kill the enemy
-        }
         if (collision.tag != "Player") {
             PS.Play();
             rb2.velocity = new Vector2();
