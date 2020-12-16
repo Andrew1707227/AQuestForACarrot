@@ -86,6 +86,8 @@ public class PlayerControl : MonoBehaviour
     private bool turnAroundSlowLeft = false;
     //Holds if the player is in turn around slow right
     private bool turnAroundSlowRight = false;
+    //Holds if the aniMoving should be true regardless of speed
+    private bool aniMovingBuffer = false;
 
     //--Private Vector2s
     //Temporally Holds new velocitys
@@ -121,7 +123,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Activate the ground check, movment, and slope check
+        //Activate the ground check, movment, slope check, and the two managers
         CheckGround();
         GetMovement();
         SlopeCheck();
@@ -136,6 +138,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             isOnSlope = false;
+            aniMovingBuffer = false;
         }
 
     }
@@ -143,7 +146,7 @@ public class PlayerControl : MonoBehaviour
     private void animationManager()
     {
         //Checks if moving for animator
-        if (rb2.velocity.x != 0.0f)
+        if (rb2.velocity.x != 0.0f || aniMovingBuffer)
         {
             ani.SetBool("aniMoving", true);
         }
@@ -266,6 +269,12 @@ public class PlayerControl : MonoBehaviour
         if (canJump)
         {
 
+            //Turns on aniMovingBuffer if moving
+            if (rb2.velocity.x != 0.0f)
+            {
+                aniMovingBuffer = true;
+            }
+
             //Toggles can jump and is jumping
             canJump = false;
             isJumping = true;
@@ -273,13 +282,15 @@ public class PlayerControl : MonoBehaviour
 
             //Checks for upwards movement
             if (rb2.velocity.y > 0)
-            {
+            {    
+
                 //Sets x velocity to 0
-                newVelocity.Set(0.0f, rb2.velocity.y - (rb2.velocity.y / 3));
+                newVelocity.Set(0.0f, rb2.velocity.y - (rb2.velocity.y / 4));
                 rb2.velocity = newVelocity;
             }
             else
             {
+
                 //Sets x and y velocity to 0
                 newVelocity.Set(0.0f, 0.0f);
                 rb2.velocity = newVelocity;
