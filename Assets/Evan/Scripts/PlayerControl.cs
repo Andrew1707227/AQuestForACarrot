@@ -117,6 +117,8 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(rb2.velocity.x);
+
         //Activate input check
         CheckInput();
     }
@@ -138,9 +140,7 @@ public class PlayerControl : MonoBehaviour
         else
         {
             isOnSlope = false;
-            aniMovingBuffer = false;
         }
-
     }
 
     private void animationManager()
@@ -149,6 +149,7 @@ public class PlayerControl : MonoBehaviour
         if (rb2.velocity.x != 0.0f || aniMovingBuffer)
         {
             ani.SetBool("aniMoving", true);
+            aniMovingBuffer = false;
         }
         else
         {
