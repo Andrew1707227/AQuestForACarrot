@@ -11,6 +11,7 @@ public class CreateSnowball : MonoBehaviour {
 
     private AudioSource ASource;
     private SpriteRenderer sr;
+    private Animator ani;
 
     public Texture2D crosshair;
     public Texture2D crosshairGrayScale;
@@ -23,6 +24,7 @@ public class CreateSnowball : MonoBehaviour {
 
         ASource = GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
+        ani = GetComponent<Animator>();
 
         TimeRemaining = CoolDown;
         Cursor.SetCursor(crosshair, crosshairPos, CursorMode.Auto);
@@ -41,6 +43,7 @@ public class CreateSnowball : MonoBehaviour {
                 TimeRemaining = 0;
                 ASource.pitch = Random.value / 5 + .9f;
                 ASource.Play();
+                ani.SetTrigger("aniThrow");
                 GameObject Snowball = Instantiate(SnowballTemplate);
                 Snowball.name = "SnowballClone";
             }
