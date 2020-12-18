@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour
     private float slowDownTime;
     //Holds fall multiplyer
     [SerializeField]
-    public float fallMultiplier;
+    private float fallMultiplier;
 
     //--Serialized Transforms
     //Holds loction for ground check sphere
@@ -117,10 +117,8 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(rb2.velocity.x);
-
         //Activate input check
-        CheckInput();
+        CheckInput(); 
     }
 
     private void FixedUpdate()
@@ -128,9 +126,9 @@ public class PlayerControl : MonoBehaviour
         //Activate the ground check, movment, slope check, and the two managers
         CheckGround();
         GetMovement();
-        SlopeCheck();
         DownSpeedManager();
         animationManager();
+        SlopeCheck();
 
         //Checks if slope angle is a slope
         if (slopeDownAngle != 0.0f || slopeSideAngle != 0.0f)
@@ -173,20 +171,22 @@ public class PlayerControl : MonoBehaviour
             ani.SetBool("aniGoingUp", false);
             ani.SetBool("aniGoingDown", false);
         }
+
+        ani.SetFloat("aniY-Velocity", rb2.velocity.y);
     }
 
     private void SlopeCheck()
     {
-        //Activate Vertical and Horizontal checks and give them a starting point
+        //Activate Vertical and Horizontal checks and give them a starting point(s)
         SlopeCheckVertical(checkPos.position);
         SlopeCheckHorizontal(checkPos.position);
     }
 
-    private void SlopeCheckHorizontal(Vector2 checkPos)
+    private void SlopeCheckHorizontal(Vector2 posH)
     {
         //Sends two rays out, one right one left
-        RaycastHit2D slopeHitFront = Physics2D.Raycast(checkPos, Vector2.right, slopeCheckDistance, whatIsGround);
-        RaycastHit2D slopeHitBack = Physics2D.Raycast(checkPos, -Vector2.right, slopeCheckDistance, whatIsGround);
+        RaycastHit2D slopeHitFront = Physics2D.Raycast(posH, Vector2.right, slopeCheckDistance, whatIsGround);
+        RaycastHit2D slopeHitBack = Physics2D.Raycast(posH, -Vector2.right, slopeCheckDistance, whatIsGround);
 
         if (slopeHitFront)
         {
@@ -226,12 +226,23 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    private void SlopeCheckVertical(Vector2 checkPos)
+    private void SlopeCheckVertical(Vector2 posV)
     {
-        //Sends ray down
-        RaycastHit2D hit = Physics2D.Raycast(checkPos, Vector2.down, slopeCheckDistance, whatIsGround);
 
-        //If something is hit by the ray
+        if (xInput > 0.0f)
+        {
+            posV += new Vector2(0.17f, 0);
+
+        }
+        else if (xInput < 0.0f)
+        {
+            posV -= new Vector2(0.17f, 0);
+        }
+
+        //Sends rays down
+        RaycastHit2D hit = Physics2D.Raycast(posV, Vector2.down, slopeCheckDistance, whatIsGround);
+
+        //If something is hit by the ray in front, middle, or back
         if (hit)
         {
             //Get the Vertor of the slopes surface
@@ -244,7 +255,8 @@ public class PlayerControl : MonoBehaviour
             Debug.DrawRay(hit.point, slopeNormalPerp, Color.red);
             Debug.DrawRay(hit.point, hit.normal, Color.green);
         }
-
+        
+        //Checks if player can walk on slope
         if (slopeDownAngle > maxSlopeAngle || slopeSideAngle > maxSlopeAngle)
         {
             canWalkOnSlope = false;
@@ -254,7 +266,8 @@ public class PlayerControl : MonoBehaviour
             canWalkOnSlope = true;
         }
 
-        if (isOnSlope && xInput == 0.0f) // && canWalkOnSlope)
+        //Changes Friction to stop sliding
+        if (isOnSlope && xInput == 0.0f)
         {
             rb2.sharedMaterial = fullFriction;
         }
@@ -271,7 +284,7 @@ public class PlayerControl : MonoBehaviour
         {
 
             //Turns on aniMovingBuffer if moving
-            if (rb2.velocity.x != 0.0f)
+            if (Mathf.Abs(rb2.velocity.x) >= 0.01f)
             {
                 aniMovingBuffer = true;
             }
@@ -280,18 +293,16 @@ public class PlayerControl : MonoBehaviour
             canJump = false;
             isJumping = true;
 
-
             //Checks for upwards movement
             if (rb2.velocity.y > 0)
             {    
 
                 //Sets x velocity to 0
-                newVelocity.Set(0.0f, rb2.velocity.y - (rb2.velocity.y / 4));
+                newVelocity.Set(0.0f, rb2.velocity.y - (rb2.velocity.y / 3));
                 rb2.velocity = newVelocity;
             }
             else
             {
-
                 //Sets x and y velocity to 0
                 newVelocity.Set(0.0f, 0.0f);
                 rb2.velocity = newVelocity;
@@ -305,6 +316,7 @@ public class PlayerControl : MonoBehaviour
 
     private void GetMovement()
     {
+
         if ((grounded && !isOnSlope && !isJumping))
         {
             //Gets flat movement
