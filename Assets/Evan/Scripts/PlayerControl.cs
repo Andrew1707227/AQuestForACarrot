@@ -117,6 +117,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(rb2.velocity.x);
         //Activate input check
         CheckInput(); 
     }
@@ -333,6 +334,14 @@ public class PlayerControl : MonoBehaviour
         }
         else if (grounded && isOnSlope && !isJumping && !canWalkOnSlope && highLeft)
         {
+            //Stops movement up steep slopes
+            if (rb2.velocity.x < 0)
+            {
+                newVelocity.Set(0, rb2.velocity.y);
+                //Sends newVelocity to ApplyMovement
+                ApplyMovement(newVelocity, true);
+            }
+
             //Gets Right only slope movement
             if (-xInput <= 0)
             {
@@ -343,6 +352,14 @@ public class PlayerControl : MonoBehaviour
         }
         else if (grounded && isOnSlope && !isJumping && !canWalkOnSlope && highRight)
         {
+            //Stops movement up steep slopes
+            if (rb2.velocity.x > 0)
+            {
+                newVelocity.Set(0, rb2.velocity.y);
+                //Sends newVelocity to ApplyMovement
+                ApplyMovement(newVelocity, true);
+            }
+
             //Gets Left only slope movement
             if (-xInput >= 0)
             {
