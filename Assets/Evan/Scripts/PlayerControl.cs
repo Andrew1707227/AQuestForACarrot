@@ -337,7 +337,7 @@ public class PlayerControl : MonoBehaviour
             //Stops movement up steep slopes
             if (rb2.velocity.x < 0)
             {
-                newVelocity.Set(0, rb2.velocity.y);
+                newVelocity.Set(rb2.velocity.x + (Time.deltaTime * 5), rb2.velocity.y);
                 //Sends newVelocity to ApplyMovement
                 ApplyMovement(newVelocity, true);
             }
@@ -355,7 +355,7 @@ public class PlayerControl : MonoBehaviour
             //Stops movement up steep slopes
             if (rb2.velocity.x > 0)
             {
-                newVelocity.Set(0, rb2.velocity.y);
+                newVelocity.Set(rb2.velocity.x - (Time.deltaTime * 5), rb2.velocity.y);
                 //Sends newVelocity to ApplyMovement
                 ApplyMovement(newVelocity, true);
             }

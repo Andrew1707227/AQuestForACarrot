@@ -901,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &720710092
 Transform:
   m_ObjectHideFlags: 0
@@ -1497,6 +1497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   invulnTime: 0.2
   matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
+  invuln: 0
 --- !u!114 &1237278708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,7 +1514,7 @@ MonoBehaviour:
   jumpForce: 6
   groundCheckRadius: 0.36
   slopeCheckDistance: 1
-  maxSlopeAngle: 60
+  maxSlopeAngle: 20
   slowDownTime: 0.2
   fallMultiplier: 2
   groundCheckTrans: {fileID: 1098456393}
