@@ -17,7 +17,7 @@ public class hitEffect : MonoBehaviour
     private float invulnTimer = 0;
 
     //Hold is player is invulnerable
-    private bool invuln = false;
+    public bool invuln = false;
 
     //Holds default shader
     private Material matDefault;

@@ -267,7 +267,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         //Changes Friction to stop sliding
-        if (isOnSlope && xInput == 0.0f)
+        if (isOnSlope && xInput == 0.0f && canWalkOnSlope)
         {
             rb2.sharedMaterial = fullFriction;
         }
