@@ -117,7 +117,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(rb2.velocity.x);
         //Activate input check
         CheckInput(); 
     }

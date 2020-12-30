@@ -22,7 +22,7 @@ public class hitEffect : MonoBehaviour
     //Holds default shader
     private Material matDefault;
 
-    //Component References
+    //Component Reference
     SpriteRenderer sr;
 
     // Start is called before the first frame update
