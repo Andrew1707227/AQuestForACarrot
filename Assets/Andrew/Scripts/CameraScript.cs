@@ -25,7 +25,7 @@ public class CameraScript : MonoBehaviour {
         }
     }
 
-    private void StartShake() {
+    public void StartShake() {
         ShakeRemaining = CamShakeDuration;
     }
 
