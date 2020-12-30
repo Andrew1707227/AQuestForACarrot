@@ -6,6 +6,7 @@ public class ExitScript : MonoBehaviour
 {
     public void quitTheGame()
     {
+        //Quits game
         Application.Quit();
         Debug.Log("Would of quit if built");
     }

@@ -5,37 +5,32 @@ using UnityEngine.UI;
 
 public class UiFadeButtons : MonoBehaviour
 {
-    private bool fadeStart;
-
-    //Component References
+    //Component Reference
     Image i;
-    StartGame startGame;
 
     // Start is called before the first frame update
     void Start()
     {
         i = gameObject.GetComponent<Image>();
-
-        GameObject startbutton = GameObject.Find("StartButton");
-        startGame = startbutton.GetComponent<StartGame>();
-        fadeStart = startGame.startCutscene;
     }
 
     // Update is called once per frame
     void Update()
     {
-        fadeStart = startGame.startCutscene;
-
-        if (fadeStart)
+        //Checks if cutscene has started
+        if (StartGame.startCutscene)
         {
+            //Starts coroutine
             StartCoroutine(fadeOutCor());
         }
     }
 
     IEnumerator fadeOutCor()
     {
+        //Checks if completely transparent
         if (i.color != new Color(1.0f, 1.0f, 1.0f, 0))
         {
+            //Decreases alpha by 0.05
             i.color = i.color - new Color(0f, 0f, 0f, 0.05f);
             yield return new WaitForSeconds(0.05f);
         }

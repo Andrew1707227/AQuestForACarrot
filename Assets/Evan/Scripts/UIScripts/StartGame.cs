@@ -5,9 +5,11 @@ using UnityEngine.Video;
 
 public class StartGame : MonoBehaviour
 {
+    //Holds reference to first frame image
     GameObject firstFrame;
 
-    public bool startCutscene = false;
+    //Holds if cutscene has started
+    public static bool startCutscene = false;
 
     //Component Reference
     private VideoPlayer vp;
@@ -20,31 +22,22 @@ public class StartGame : MonoBehaviour
         firstFrame = GameObject.Find("FirstFrame");
     }
 
-    
-    private void Update()
-    {
-        if (vp.isPlaying)
-        {
-            // working here
-            // solution: make first frame of video image over screen and when playing remove that and show video player instead
-            if (vp.isPlaying)
-            {
-                //firstFrame.active = false;
-            }
-        }
-    }
-
+    //If button is clicked
     public void startClick()
     {
+        //set StartCutscene to true
         startCutscene = true;
+        //Start coroutine
         StartCoroutine(startVideoCor());
     }
 
     IEnumerator startVideoCor()
     {
         yield return new WaitForSeconds(1f);
+        //Start videoplayer
         vp.Play();
         yield return new WaitForSeconds(0.6f);
-        firstFrame.active = false;
+        //Turns off first frame image
+        firstFrame.SetActive(false);
     }
 }
