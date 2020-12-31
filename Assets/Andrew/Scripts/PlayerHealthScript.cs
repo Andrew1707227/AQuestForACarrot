@@ -10,6 +10,7 @@ public class PlayerHealthScript : MonoBehaviour {
 
     public GameObject Cam;
     private CameraScript CamShake;
+    private hitEffect hitEffect;
 
     public GameObject DamageSFX;
     private AudioSource Asource;
@@ -22,6 +23,8 @@ public class PlayerHealthScript : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         CamShake = Cam.GetComponent<CameraScript>();
+        hitEffect = GetComponent<hitEffect>();
+
         Asource = DamageSFX.GetComponent<AudioSource>();
         rb2 = GetComponent<Rigidbody2D>();
 
@@ -38,11 +41,13 @@ public class PlayerHealthScript : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "Enemy" && timeRemaining <= 0) {
+        if (collision.gameObject.tag == "Enemy" && timeRemaining <= 0 && !hitEffect.invuln) {
             currLives--;
             timeRemaining = cooldown;
-            CamShake.StartShake();
             Asource.Play();
+
+            CamShake.StartShake();
+            hitEffect.hitEffectStart();
         }
     }
 

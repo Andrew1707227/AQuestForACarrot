@@ -1056,8 +1056,8 @@ GameObject:
   - component: {fileID: 188822974}
   m_Layer: 0
   m_Name: Checkpoint (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12925,8 +12925,8 @@ GameObject:
   - component: {fileID: 963664785}
   m_Layer: 0
   m_Name: Checkpoint (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12997,8 +12997,8 @@ GameObject:
   - component: {fileID: 973646628}
   m_Layer: 0
   m_Name: Checkpoint (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -13069,8 +13069,8 @@ GameObject:
   - component: {fileID: 979024616}
   m_Layer: 0
   m_Name: Checkpoint (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14356,8 +14356,8 @@ GameObject:
   - component: {fileID: 1234350958}
   m_Layer: 0
   m_Name: Checkpoint (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -14759,8 +14759,8 @@ GameObject:
   - component: {fileID: 1316942538}
   m_Layer: 0
   m_Name: Checkpoint (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Checkpoint
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -20519,9 +20519,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dd9b21008e9d3408bbde1ccb91561f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invulnTime: 0.3
+  invulnTime: 0.1
   matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
-  invuln: 0
 --- !u!1 &1740757609
 GameObject:
   m_ObjectHideFlags: 0
