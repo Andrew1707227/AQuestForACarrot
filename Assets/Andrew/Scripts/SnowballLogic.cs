@@ -21,6 +21,10 @@ public class SnowballLogic : MonoBehaviour {
     public float offMap;
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "Enemy" && GetComponent<SpriteRenderer>().enabled) {
+            //TODO: death animation
+            Destroy(collision.gameObject);
+        }
         if (collision.tag != "Player") {
             PS.Play();
             rb2.velocity = new Vector2();
