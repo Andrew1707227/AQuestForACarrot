@@ -76,19 +76,11 @@ public class hitEffect : MonoBehaviour
         invuln = false;
     }
    
-
-    private void OnCollisionStay2D(Collision2D collision)
+    public void hitEffectStart()
     {
-        //Check if player touched enemy
-        if (collision.gameObject.tag == "Enemy" && !invuln)
-        {
-            //turns on invuln
-            invuln = true;
-            //Starts flashes coroutine
-            StartCoroutine(flashesCor());
-
-
-            //Damage could go here too
-        }
+        //turns on invuln
+        invuln = true;
+        //Starts flashes coroutine
+        StartCoroutine(flashesCor());
     }
 }
