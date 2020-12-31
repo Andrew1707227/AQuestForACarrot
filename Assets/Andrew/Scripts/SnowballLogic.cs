@@ -25,7 +25,7 @@ public class SnowballLogic : MonoBehaviour {
             //TODO: death animation
             Destroy(collision.gameObject);
         }
-        if (collision.tag != "Player") {
+        if (collision.tag != "Player" && collision.tag != "Checkpoint") {
             PS.Play();
             rb2.velocity = new Vector2();
             GetComponent<SpriteRenderer>().enabled = false;
