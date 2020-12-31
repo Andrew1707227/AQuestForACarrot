@@ -53,10 +53,9 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu()
     {
-        Debug.Log("Would of loaded menu (Build settings not set up)");
         //Resets Time
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         //Loads Main Menu Scene
-        //SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

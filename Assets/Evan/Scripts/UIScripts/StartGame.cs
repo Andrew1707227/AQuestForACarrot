@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
@@ -34,10 +35,21 @@ public class StartGame : MonoBehaviour
     IEnumerator startVideoCor()
     {
         yield return new WaitForSeconds(1f);
+
         //Start videoplayer
         vp.Play();
         yield return new WaitForSeconds(0.6f);
+
         //Turns off first frame image
         firstFrame.SetActive(false);
+
+        //Waits for video to end
+        while (vp.isPlaying)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        //Loads Level Scene
+        SceneManager.LoadScene("MainLevel");
     }
 }
