@@ -51,6 +51,12 @@ public class PlayerHealthScript : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.name == "DeathAreas") {
+            Respawn();
+        }
+    }
+
     private void Respawn() {
         //TODO: Play death animation
         transform.position = Checkpoint.transform.position;
