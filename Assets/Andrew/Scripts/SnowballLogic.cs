@@ -19,16 +19,20 @@ public class SnowballLogic : MonoBehaviour {
     private ParticleSystem PS;
 
     public float offMap;
+    private bool isHit = false;
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "Enemy" && GetComponent<SpriteRenderer>().enabled) {
             //TODO: death animation
             Destroy(collision.gameObject);
         }
-        if (collision.tag != "Player" && collision.tag != "Checkpoint") {
+        if (collision.tag != "Player" && collision.tag != "Checkpoint" && !isHit) {
+            isHit = true;
+            GetComponent<AudioSource>().Play();
             PS.Play();
             rb2.velocity = new Vector2();
             GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(GetComponent<TrailRenderer>());
         }
     }
 
