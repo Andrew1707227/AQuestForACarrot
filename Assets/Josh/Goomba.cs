@@ -17,9 +17,9 @@ public class Goomba : MonoBehaviour
         transform.Translate(((movingDirection ? -1 : 1) * Vector3.left * Time.deltaTime * speed));
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Edge" || other.gameObject.tag == "Enemy")
+        if (other.tag == "Edge" || other.tag == "Enemy")
         {
             //Reverse Direction please
             movingDirection = !movingDirection;
