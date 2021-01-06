@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealthScript : MonoBehaviour {
 
     public float lives;
-    private float currLives;
+    private static float currLives;
     public float OffMap;
 
     public GameObject Cam;
@@ -98,7 +98,7 @@ public class PlayerHealthScript : MonoBehaviour {
         GetComponent<CreateSnowball>().enabled = true;
     }
 
-    public float GetLives() {
+    public static float GetLives() {
         return currLives;
     }
 }
