@@ -26,7 +26,7 @@ public class SnowballLogic : MonoBehaviour {
             //TODO: death animation
             Destroy(collision.gameObject);
         }
-        if (collision.tag != "Player" && collision.tag != "Checkpoint" && !isHit) {
+        if ((collision.gameObject.layer == 8 /* 8 = ground layer */ || collision.tag == "Enemy") && !isHit) {
             isHit = true;
             GetComponent<AudioSource>().Play();
             PS.Play();
