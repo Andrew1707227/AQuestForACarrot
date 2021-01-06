@@ -14,6 +14,8 @@ public class PlayerHealthScript : MonoBehaviour {
 
     public GameObject DamageSFX;
     private AudioSource Asource;
+    public GameObject DiedSFX;
+
     private Rigidbody2D rb2;
     private Animator anim;
 
@@ -72,13 +74,14 @@ public class PlayerHealthScript : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.name == "DeathAreas") {
-            killPlayer();
+            currLives = 0;
         }
     }
 
     private void killPlayer() {
         if (!isDead) {
             anim.SetTrigger("aniDead");
+            DiedSFX.GetComponent<AudioSource>().Play();
             aniDeadCoolDown = 3;
             isDead = true;
             tempPos = transform.position;
