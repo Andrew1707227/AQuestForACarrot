@@ -6,10 +6,8 @@ using UnityEngine.UI;
 public class HealthBarManager : MonoBehaviour
 {
     //Holds current health
-    [SerializeField]
     private int currentHealth;
     //Holds max health
-    [SerializeField]
     private int maxHealth;
 
     //Holds refrences to all the heart images
