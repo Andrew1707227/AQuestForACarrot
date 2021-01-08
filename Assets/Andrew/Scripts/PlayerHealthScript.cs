@@ -56,7 +56,7 @@ public class PlayerHealthScript : MonoBehaviour {
         if (isDead) {
             GetComponent<PlayerControl>().enabled = false;
             GetComponent<CreateSnowball>().enabled = false;
-            transform.position = tempPos;
+            transform.position = new Vector2(tempPos.x,transform.position.y);
             if (aniDeadCoolDown <= 0) Respawn();
         }
     }
