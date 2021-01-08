@@ -43,8 +43,6 @@ public class PauseMenu : MonoBehaviour
 
     void Pause()
     {
-        //Sets curser to defualt
-        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         //Turns on pause menu UI
         pauseMenuUI.SetActive(true);
         //Stops time
