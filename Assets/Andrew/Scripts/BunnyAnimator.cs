@@ -7,18 +7,21 @@ public class BunnyAnimator : MonoBehaviour {
     private Animator anim;
     private SpriteRenderer sr;
     public Sprite defaultBunny;
-
-    private float timeRemaining = 0;
+    public GameObject checkpoint;
+    private CoolWanderingGoomba goomba;
     private Vector3 prevTransform;
 
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        goomba = GetComponent<CoolWanderingGoomba>();
+        goomba.enabled = false;
     }
 
     // Update is called once per frame
     void Update()  {
+        if (!goomba.enabled && checkpoint.GetComponent<CheckpointDetector>().activated) goomba.enabled = true;
         sr.flipX = transform.position.x - prevTransform.x > 0;
         anim.enabled = !(transform.position == prevTransform);
         if (!anim.enabled) sr.sprite = defaultBunny;

@@ -2510,6 +2510,8 @@ GameObject:
   - component: {fileID: 377357121}
   - component: {fileID: 377357120}
   - component: {fileID: 377357119}
+  - component: {fileID: 377357125}
+  - component: {fileID: 377357127}
   m_Layer: 0
   m_Name: Bunny (2)
   m_TagString: Enemy
@@ -2558,6 +2560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBunny: {fileID: 21300000, guid: 4c45b66bcab9047478b12e2e074b70d4, type: 3}
+  checkpoint: {fileID: 973646625}
 --- !u!95 &377357121
 Animator:
   serializedVersion: 3
@@ -2662,6 +2665,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &377357125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377357117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3dd9b21008e9d3408bbde1ccb91561f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnTime: 0.01
+  matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
+--- !u!114 &377357127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377357117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 5
 --- !u!1 &401173937
 GameObject:
   m_ObjectHideFlags: 0
@@ -20913,7 +20943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963664783}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 268.4, y: -49.64, z: 0}
+  m_LocalPosition: {x: 268.439, y: -49.908, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 808658718}
@@ -20995,7 +21025,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 8e0b05a5e2366c442a585819d5adf3af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -21857,6 +21887,8 @@ GameObject:
   - component: {fileID: 995083907}
   - component: {fileID: 995083906}
   - component: {fileID: 995083905}
+  - component: {fileID: 995083911}
+  - component: {fileID: 995083913}
   m_Layer: 0
   m_Name: Bunny (4)
   m_TagString: Enemy
@@ -21905,6 +21937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBunny: {fileID: 21300000, guid: 4c45b66bcab9047478b12e2e074b70d4, type: 3}
+  checkpoint: {fileID: 973646625}
 --- !u!95 &995083907
 Animator:
   serializedVersion: 3
@@ -22009,6 +22042,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &995083911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995083903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3dd9b21008e9d3408bbde1ccb91561f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnTime: 0.01
+  matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
+--- !u!114 &995083913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995083903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 5
 --- !u!1 &1014746289
 GameObject:
   m_ObjectHideFlags: 0
@@ -22569,6 +22629,8 @@ GameObject:
   - component: {fileID: 1093919559}
   - component: {fileID: 1093919558}
   - component: {fileID: 1093919557}
+  - component: {fileID: 1093919563}
+  - component: {fileID: 1093919565}
   m_Layer: 0
   m_Name: Bunny (1)
   m_TagString: Enemy
@@ -22584,7 +22646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1093919555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.297992, y: 11.6111965, z: 2.2288175}
+  m_LocalPosition: {x: 53.8, y: -11.02, z: 2.2288175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 283542661}
@@ -22617,6 +22679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBunny: {fileID: 21300000, guid: 4c45b66bcab9047478b12e2e074b70d4, type: 3}
+  checkpoint: {fileID: 1234350955}
 --- !u!95 &1093919559
 Animator:
   serializedVersion: 3
@@ -22721,6 +22784,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1093919563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093919555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3dd9b21008e9d3408bbde1ccb91561f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnTime: 0.01
+  matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
+--- !u!114 &1093919565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093919555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 5
 --- !u!1 &1190340038
 GameObject:
   m_ObjectHideFlags: 0
@@ -27918,7 +28008,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bbfe5d7c971c4e14197f380eac25be16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -29238,6 +29328,8 @@ GameObject:
   - component: {fileID: 1571657843}
   - component: {fileID: 1571657842}
   - component: {fileID: 1571657841}
+  - component: {fileID: 1571657847}
+  - component: {fileID: 1571657849}
   m_Layer: 0
   m_Name: Bunny (3)
   m_TagString: Enemy
@@ -29286,6 +29378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBunny: {fileID: 21300000, guid: 4c45b66bcab9047478b12e2e074b70d4, type: 3}
+  checkpoint: {fileID: 973646625}
 --- !u!95 &1571657843
 Animator:
   serializedVersion: 3
@@ -29390,6 +29483,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1571657847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571657839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3dd9b21008e9d3408bbde1ccb91561f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnTime: 0.01
+  matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
+--- !u!114 &1571657849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571657839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 5
 --- !u!1 &1576939274
 GameObject:
   m_ObjectHideFlags: 0
@@ -29883,7 +30003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnowballTemplate: {fileID: 685083143}
-  CoolDown: 0.3
+  CoolDown: 0.5
   crosshair: {fileID: 2800000, guid: a079abaf13e4b2c40862348f991f45e3, type: 3}
   crosshairGrayScale: {fileID: 2800000, guid: 74808d1bd0a3e53429c18bbb28aad5c2, type: 3}
   crosshairPos: {x: 37.5, y: 50}
@@ -31609,6 +31729,8 @@ GameObject:
   - component: {fileID: 2070562827}
   - component: {fileID: 2070562828}
   - component: {fileID: 2070562824}
+  - component: {fileID: 2070562829}
+  - component: {fileID: 2070562831}
   m_Layer: 0
   m_Name: Bunny
   m_TagString: Enemy
@@ -31761,6 +31883,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultBunny: {fileID: 21300000, guid: 4c45b66bcab9047478b12e2e074b70d4, type: 3}
+  checkpoint: {fileID: 973646625}
+--- !u!114 &2070562829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070562821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3dd9b21008e9d3408bbde1ccb91561f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invulnTime: 0.01
+  matWhite: {fileID: 2100000, guid: 9f96de483825e6945b2574fb1953d606, type: 2}
+--- !u!114 &2070562831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070562821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLives: 5
 --- !u!1 &2088363902
 GameObject:
   m_ObjectHideFlags: 0
