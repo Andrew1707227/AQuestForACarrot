@@ -85,6 +85,7 @@ public class PlayerHealthScript : MonoBehaviour {
             aniDeadCoolDown = 3;
             isDead = true;
             tempPos = transform.position;
+            CamShake.enabled = false;
         }
     }
 
@@ -96,6 +97,7 @@ public class PlayerHealthScript : MonoBehaviour {
         anim.Play("Player_idle");
         GetComponent<PlayerControl>().enabled = true;
         GetComponent<CreateSnowball>().enabled = true;
+        CamShake.enabled = true;
     }
 
     public static float GetLives() {

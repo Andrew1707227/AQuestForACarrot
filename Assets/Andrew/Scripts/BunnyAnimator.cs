@@ -6,6 +6,7 @@ public class BunnyAnimator : MonoBehaviour {
 
     private Animator anim;
     private SpriteRenderer sr;
+    public Sprite defaultBunny;
 
     private float timeRemaining = 0;
     private Vector3 prevTransform;
@@ -18,8 +19,9 @@ public class BunnyAnimator : MonoBehaviour {
 
     // Update is called once per frame
     void Update()  {
-        sr.flipX = transform.position.x > prevTransform.x;
-        anim.Play("BunnyJump");
+        sr.flipX = transform.position.x - prevTransform.x > 0;
+        anim.enabled = !(transform.position == prevTransform);
+        if (!anim.enabled) sr.sprite = defaultBunny;
         prevTransform = transform.position;
     }
 }
