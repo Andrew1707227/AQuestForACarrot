@@ -49,6 +49,7 @@ public class StartGame : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        //Resets varible
         startCutscene = false;
 
         //Loads Level Scene
