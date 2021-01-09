@@ -49,6 +49,8 @@ public class StartGame : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
+        startCutscene = false;
+
         //Loads Level Scene
         SceneManager.LoadScene("MainLevel");
     }
