@@ -60,8 +60,7 @@ public class PlayerHealthScript : MonoBehaviour {
             if (aniDeadCoolDown <= 0) Respawn();
         }
     }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
+    private void OnCollisionStay2D(Collision2D collision) {
         if (collision.gameObject.tag == "Enemy" && timeRemaining <= 0 && !hitEffect.invuln && !isDead) {
             currLives--;
             timeRemaining = cooldown;
