@@ -65,8 +65,7 @@ public class PlayerHealthScript : MonoBehaviour {
             currLives--;
             timeRemaining = cooldown;
             Asource.Play();
-
-            CamShake.StartShake();
+            if (currLives > 0) CamShake.StartShake();
             hitEffect.hitEffectStart();
         }
     }

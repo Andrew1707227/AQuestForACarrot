@@ -16,7 +16,7 @@ public class BossScript : MonoBehaviour {
     void Update() {
        if (Boss == null) {
             carrot.SetActive(true);
-            carrot.transform.position = bossPos + Vector3.up;
+            carrot.transform.position = bossPos + Vector3.up * 2;
         } else {
             bossPos = Boss.transform.position;
         }
