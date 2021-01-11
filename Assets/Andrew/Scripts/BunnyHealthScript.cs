@@ -38,4 +38,7 @@ public class BunnyHealthScript : MonoBehaviour {
             coolDown = 0;
         }
     }
+    public float getLives() {
+        return currLives;
+    }
 }

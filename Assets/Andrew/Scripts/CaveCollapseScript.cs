@@ -34,7 +34,7 @@ public class CaveCollapseScript : MonoBehaviour {
         if (timer > 5) {
             Player.GetComponent<PlayerControl>().enabled = true;
             Player.GetComponent<PlayerHealthScript>().enabled = true;
-            Player.GetComponent<Animator>().enabled = true;
+            //Player.GetComponent<Animator>().enabled = true;
         } else if (timer > 2) {
             collision.enabled = false;
             ps.Play();
@@ -50,8 +50,9 @@ public class CaveCollapseScript : MonoBehaviour {
             debounce = true;
             Player.GetComponent<PlayerControl>().enabled = false;
             Player.GetComponent<PlayerHealthScript>().enabled = false;
-            Player.GetComponent<Animator>().enabled = false;
-            Player.GetComponent<SpriteRenderer>().sprite = defaultPlayerSprite;
+            //Player.GetComponent<Animator>().enabled = false;
+            Player.GetComponent<Animator>().SetBool("aniMoving",false);
+            //Player.GetComponent<SpriteRenderer>().sprite = defaultPlayerSprite;
             Music.GetComponent<AudioSource>().enabled = false;
             Asource.Play();
             BossTheme.GetComponent<AudioSource>().PlayDelayed(2);
