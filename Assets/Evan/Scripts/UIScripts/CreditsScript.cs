@@ -7,6 +7,7 @@ public class CreditsScript : MonoBehaviour
 {
     public void loadCredits()
     {
+        //Trasitions to creditScene
         SceneManager.LoadScene("CreditScene");
     }
 }
