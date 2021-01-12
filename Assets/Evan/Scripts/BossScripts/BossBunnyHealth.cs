@@ -15,43 +15,71 @@ public class BossBunnyHealth : MonoBehaviour
     private float coolDown;
 
     //Component References
+    private Rigidbody2D rb2;
     private hitEffect hitEffect;
     private Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animator>();
+        //Get component References 
+        rb2 = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         hitEffect = GetComponent<hitEffect>();
+
+        //Set up current lives
         currLives = maxLives;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if hit by snowball and not invuln
         if (collision.tag == "Snowball" && !BunInvuln)
         {
-            BunInvuln = true; //keep it from hitting twice
+            //Set bunInvuln to true
+            BunInvuln = true; 
+
+            //If dead
             if (currLives - 1 <= 0)
             {
-                Destroy(gameObject);
+                //Start dead animation
+                anim.SetTrigger("AniBossDead");
+
+                //deactivate other scripts
+                gameObject.GetComponent<BossMove>().enabled = false;
+                gameObject.GetComponent<BossSnowBallThrow>().enabled = false;
+
+                //Turns off gravity
+                rb2.gravityScale = 0;
+
+                //Stops all velocity
+                rb2.velocity = new Vector2(0, 0);
+
+                //Turn off collider
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
             }
 
+            //Activate hit effect
             hitEffect.hitEffectStart();
 
+            //Increment lives
             currLives--;
         }
     }
 
     void Update()
     {
-        //if debouce is active
+        //If BunInvuln is active
         if (BunInvuln)
         {
+            //Increment colldown
             coolDown += Time.deltaTime;
         }
 
-        if (coolDown > .05)
+        //If cooldown is complete
+        if (coolDown > .08)
         {
+            //Reset BunInvuln and cooldown
             BunInvuln = false;
             coolDown = 0;
         }
