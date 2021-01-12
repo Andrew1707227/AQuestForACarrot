@@ -4,18 +4,28 @@ using UnityEngine;
 
 public class BossSnowBallThrow : MonoBehaviour
 {
-    //Holds snowball temeplate to spawn
+    //Holds throw snowball template to spawn
     [SerializeField]
-    private GameObject snowballTemplate;
+    private GameObject throwSnowballTemplate;
+    //Holds drop snowball template to spawn
+    [SerializeField]
+    private GameObject dropSnowballTemplate;
 
     //Holds time in between throws
     [SerializeField]
-    private float coolDownTime;
+    private float throwCoolDownTime;
+    //Holds time in between Drops
+    [SerializeField]
+    private float dropCoolDownTime;
     //Holds current CoolDown Time
-    private float currentCoolDownTime;
+    private float currentThrowCoolTime;
+    //Holds time in between Drops
+    private float currentDropCoolTime;
 
-    //Times out the cooldown
-    private float coolDownTimer;
+    //Times out the cooldown for throw
+    private float throwCoolDownTimer;
+    //Times out the cooldown for drop
+    private float dropCoolDownTimer;
 
     //Holds if throwAnimation has started
     private bool throwTriggered = false;
@@ -34,39 +44,43 @@ public class BossSnowBallThrow : MonoBehaviour
         ani = GetComponent<Animator>();
 
         //Sets up starting cool down time
-        currentCoolDownTime = coolDownTime;
+        currentThrowCoolTime = throwCoolDownTime;
+
+        //Sets up starting cool down time
+        currentDropCoolTime = dropCoolDownTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (coolDownTimer >= currentCoolDownTime && !PauseMenu.gameIsPaused)
+        //Manages throw timing
+        if (throwCoolDownTimer >= currentThrowCoolTime && !PauseMenu.gameIsPaused)
         {
 
             //Resets timer
-            coolDownTimer = 0;
+            throwCoolDownTimer = 0;
 
             //Resets throwTriggered
             throwTriggered = false;
 
             //Adds a random valuse to the cooldown
-            currentCoolDownTime += Random.Range(-0.5f, 0.5f);
+            currentThrowCoolTime += Random.Range(-0.5f, 0.5f);
 
             //Sets the cooldown back if it gets to big or small
-            if (currentCoolDownTime > coolDownTime + 1.5f)
+            if (currentThrowCoolTime > throwCoolDownTime + 1.5f)
             {
-                currentCoolDownTime = coolDownTime + 1.5f;
+                currentThrowCoolTime = throwCoolDownTime + 1.5f;
             }
-            else if (currentCoolDownTime < coolDownTime - 1.5f)
+            else if (currentThrowCoolTime < throwCoolDownTime - 1.5f)
             {
-                currentCoolDownTime = coolDownTime - 1.5f;
+                currentThrowCoolTime = throwCoolDownTime - 1.5f;
             }
 
             //Spawn snowball and changes its name
-            GameObject snowball = Instantiate(snowballTemplate);
-            snowball.name = "BossSnowballClone";
+            GameObject throwSnowball = Instantiate(throwSnowballTemplate);
+            throwSnowball.name = "BossSnowballCloneThrow";
         }
-        else if(coolDownTimer >= currentCoolDownTime - 0.2 && !throwTriggered && !PauseMenu.gameIsPaused)
+        else if (throwCoolDownTimer >= currentThrowCoolTime - 0.2 && !throwTriggered && !PauseMenu.gameIsPaused)
         {
             //Starts throw animation
             ani.SetTrigger("AniBossThrow");
@@ -75,12 +89,42 @@ public class BossSnowBallThrow : MonoBehaviour
             throwTriggered = true;
 
             //Incremenets timer
-            coolDownTimer += Time.deltaTime;
+            throwCoolDownTimer += Time.deltaTime;
         }
         else
         {
             //Incremenets timer
-            coolDownTimer += Time.deltaTime;
+            throwCoolDownTimer += Time.deltaTime;
+        }
+
+        //Manages drop timing
+        if (dropCoolDownTimer >= currentDropCoolTime && !PauseMenu.gameIsPaused)
+        {
+
+            //Resets timer
+            dropCoolDownTimer = 0;
+
+            //Adds a random valuse to the cooldown
+            currentDropCoolTime += Random.Range(-0.5f, 0.5f);
+
+            //Sets the cooldown back if it gets to big or small
+            if (currentDropCoolTime > dropCoolDownTime + 1.5f)
+            {
+                currentDropCoolTime = dropCoolDownTime + 1.5f;
+            }
+            else if (currentDropCoolTime < dropCoolDownTime - 1.5f)
+            {
+                currentDropCoolTime = dropCoolDownTime - 1.5f;
+            }
+
+            //Spawn snowball and changes its name
+            GameObject dropSnowball = Instantiate(dropSnowballTemplate);
+            dropSnowball.name = "BossSnowballCloneDrop";
+        }
+        else
+        {
+            //Incremenets timer
+            dropCoolDownTimer += Time.deltaTime;
         }
     }
 }

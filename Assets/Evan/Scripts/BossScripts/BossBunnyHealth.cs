@@ -18,6 +18,7 @@ public class BossBunnyHealth : MonoBehaviour
     private Rigidbody2D rb2;
     private hitEffect hitEffect;
     private Animator anim;
+    private ParticleSystem ps;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class BossBunnyHealth : MonoBehaviour
         rb2 = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         hitEffect = GetComponent<hitEffect>();
+        ps = GetComponent<ParticleSystem>();
 
         //Set up current lives
         currLives = maxLives;
@@ -44,6 +46,8 @@ public class BossBunnyHealth : MonoBehaviour
             {
                 //Start dead animation
                 anim.SetTrigger("AniBossDead");
+
+                ps.Play();
 
                 //deactivate other scripts
                 gameObject.GetComponent<BossMove>().enabled = false;
@@ -89,5 +93,11 @@ public class BossBunnyHealth : MonoBehaviour
     public float getLives()
     {
         return currLives;
+    }
+
+    //Gets current lives
+    public float getMaxLives()
+    {
+        return maxLives;
     }
 }
