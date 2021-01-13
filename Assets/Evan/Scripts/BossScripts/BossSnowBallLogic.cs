@@ -71,16 +71,16 @@ public class BossSnowBallLogic : MonoBehaviour
                 GameObject dropSnowball = Instantiate(gameObject);
                 dropSnowball.name = "BossSnowballCloneDrop2";
                 //Set clone to postionELeft of original
-                dropSnowball.transform.position = new Vector2(playerPos.x, bossPos.x + 4) + new Vector2(Random.Range(-3f, -1f), 0);
+                dropSnowball.transform.position = new Vector2(playerPos.x, bossPos.y) + new Vector2(Random.Range(-3f, -1f), 0);
 
                 //Spawn another clone drop and change its name
                 GameObject dropSnowball2 = Instantiate(gameObject);
                 dropSnowball2.name = "BossSnowballCloneDrop2";
                 //Set clone to postion right of original
-                dropSnowball2.transform.position = new Vector2(playerPos.x, bossPos.x + 4) + new Vector2(Random.Range(3f, 1f), 0);
+                dropSnowball2.transform.position = new Vector2(playerPos.x, bossPos.y) + new Vector2(Random.Range(3f, 1f), 0);
 
                 //Sets snowball postion to above player
-                transform.position = new Vector2(playerPos.x, bossPos.x + 4);
+                transform.position = new Vector2(playerPos.x, bossPos.y);
             }
         }
     }
