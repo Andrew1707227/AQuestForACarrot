@@ -51,6 +51,7 @@ public class SnowballLogic : MonoBehaviour {
                 transform.position = playerPos + offset;
             }
             force = (mousePos - playerPos) * scalar;
+            rb2.AddForce(force, ForceMode2D.Impulse);
         }
     }
 
@@ -58,7 +59,7 @@ public class SnowballLogic : MonoBehaviour {
         if (gameObject.name == "SnowballClone") { 
             timer += Time.deltaTime;
             if (timer < airTime) {
-                    rb2.AddForce(force);
+                   // rb2.AddForce(force, ForceMode2D.Impulse);
             }
             if(transform.position.y < offMap) {
                 Destroy(gameObject);
