@@ -15,6 +15,7 @@ public class BossBunnyHealth : MonoBehaviour
     private float coolDown;
 
     //Component References
+    private AudioSource aS;
     private Rigidbody2D rb2;
     private hitEffect hitEffect;
     private Animator anim;
@@ -24,6 +25,7 @@ public class BossBunnyHealth : MonoBehaviour
     void Start()
     {
         //Get component References 
+        aS = GetComponents<AudioSource>()[1];
         rb2 = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         hitEffect = GetComponent<hitEffect>();
@@ -47,7 +49,9 @@ public class BossBunnyHealth : MonoBehaviour
                 //Start dead animation
                 anim.SetTrigger("AniBossDead");
 
+                //start particles and sound effect when animation hits floor
                 ps.Play();
+                aS.PlayDelayed(0.2f);
 
                 //deactivate other scripts
                 gameObject.GetComponent<BossMove>().enabled = false;

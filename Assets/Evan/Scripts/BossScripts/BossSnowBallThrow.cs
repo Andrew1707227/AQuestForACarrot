@@ -39,7 +39,7 @@ public class BossSnowBallThrow : MonoBehaviour
     void Start()
     {
         //Get component References
-        aS = GetComponent<AudioSource>();
+        aS = GetComponents<AudioSource>()[0];
         sr = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
 
@@ -75,6 +75,9 @@ public class BossSnowBallThrow : MonoBehaviour
             {
                 currentThrowCoolTime = throwCoolDownTime - 1.5f;
             }
+
+            //Play throw sound effect
+            aS.Play();
 
             //Spawn snowball and changes its name
             GameObject throwSnowball = Instantiate(throwSnowballTemplate);
