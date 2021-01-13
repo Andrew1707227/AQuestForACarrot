@@ -17,12 +17,11 @@ public class BunnySpawner : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (PlayerHealthScript.GetLives() <= 0) isDead = true;
+        isDead = PlayerHealthScript.GetLives() <= 0;
         if (isDead) timer += Time.deltaTime;
-        if (timer > 3) SpawnBunnies();
+        if (timer > 2 && !isDead) SpawnBunnies();
     }
     private void SpawnBunnies() {
-        isDead = false;
         timer = 0;
         Destroy(GameObject.Find("BunnyContainerClone"));
         BunnyContainerClone = Instantiate(BunnyContainer);

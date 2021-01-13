@@ -32,7 +32,8 @@ public class BunnyHealthScript : MonoBehaviour {
                 isDead = true;
                 GetComponent<CoolWanderingGoomba>().enabled = false;
                 GetComponent<BunnyAnimator>().enabled = false;
-                GetComponent<CapsuleCollider2D>().enabled = false;
+                GetComponents<CapsuleCollider2D>()[0].enabled = false;
+                GetComponents<CapsuleCollider2D>()[1].enabled = false;
                 anim.enabled = true;
                 anim.Play("BunnyDead");
                 tempPos = transform.position;
@@ -44,7 +45,7 @@ public class BunnyHealthScript : MonoBehaviour {
 
     void Update() {
         if (debounce) coolDown += Time.deltaTime;
-        if (coolDown > .05) {
+        if (coolDown > .45) {
             debounce = false;
             coolDown = 0;
         }
