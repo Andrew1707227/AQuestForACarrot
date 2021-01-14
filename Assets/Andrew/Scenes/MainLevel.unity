@@ -33962,6 +33962,7 @@ GameObject:
   - component: {fileID: 1091192229}
   - component: {fileID: 1091192228}
   - component: {fileID: 1091192227}
+  - component: {fileID: 1091192240}
   m_Layer: 0
   m_Name: BossTemplate
   m_TagString: Enemy
@@ -39060,6 +39061,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1091192240
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091192226}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.44017828, y: -2.6466155}
+  m_Size: {x: 2.437267, y: 4.357405}
+  m_Direction: 0
 --- !u!1 &1190340038
 GameObject:
   m_ObjectHideFlags: 0
