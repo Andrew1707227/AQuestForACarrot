@@ -22,7 +22,7 @@ public class CoolWanderingGoomba : MonoBehaviour
     }
     void Start()
     {
-        currentMoveDirection = Random.Range(0, moveDirections.Length);
+        currentMoveDirection = Random.Range(2, moveDirections.Length);
         // Cache the transform for quicker access
 
         // Set a random time delay for taking a decision ( changing direction, or standing in place for a while )
