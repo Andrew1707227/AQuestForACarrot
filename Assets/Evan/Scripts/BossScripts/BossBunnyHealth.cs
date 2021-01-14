@@ -13,6 +13,8 @@ public class BossBunnyHealth : MonoBehaviour
     private bool BunInvuln;
     //Holds hit cooldown
     private float coolDown;
+    //Holds if dead
+    private bool isDead;
 
     //Component References
     private AudioSource aS;
@@ -44,8 +46,11 @@ public class BossBunnyHealth : MonoBehaviour
             BunInvuln = true; 
 
             //If dead
-            if (currLives - 1 <= 0)
+            if (currLives - 1 <= 0 && !isDead)
             {
+                //turns on is dead
+                isDead = true;
+
                 //Start dead animation
                 anim.SetTrigger("AniBossDead");
 
