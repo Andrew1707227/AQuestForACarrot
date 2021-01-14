@@ -52,7 +52,8 @@ public class BossScript : MonoBehaviour {
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Player" && !debounce) {
+        if (collision.tag == "Player" && !debounce && !isPlayerDead) {
+            GetComponent<AudioSource>().Play();
             debounce = true;
             BossClone = Instantiate(Boss);
             BossClone.name = "BossBun";
