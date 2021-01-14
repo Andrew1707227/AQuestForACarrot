@@ -22,7 +22,7 @@ public class CoolWanderingGoomba : MonoBehaviour
     }
     void Start()
     {
-        currentMoveDirection = 2;
+        currentMoveDirection = 1;
         // Cache the transform for quicker access
 
         // Set a random time delay for taking a decision ( changing direction, or standing in place for a while )
