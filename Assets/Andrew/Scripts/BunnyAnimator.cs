@@ -23,7 +23,7 @@ public class BunnyAnimator : MonoBehaviour {
     void Update()  {
         if (!goomba.enabled && checkpoint.GetComponent<CheckpointDetector>().activated) goomba.enabled = true;
         sr.flipX = transform.position.x - prevTransform.x > 0;
-        anim.enabled = !(transform.position == prevTransform);
+        anim.enabled = Mathf.Abs(transform.position.magnitude - prevTransform.magnitude) > .01;
         if (!anim.enabled) sr.sprite = defaultBunny;
         prevTransform = transform.position;
     }
