@@ -623,7 +623,7 @@ RectTransform:
   m_GameObject: {fileID: 514521062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.995, y: 0.995, z: 1}
   m_Children:
   - {fileID: 775014401}
   m_Father: {fileID: 710076682}
@@ -632,7 +632,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 651, y: 571.1}
-  m_SizeDelta: {x: 201, y: 33}
+  m_SizeDelta: {x: 210, y: 33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &514521064
 MonoBehaviour:
@@ -665,7 +665,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Andrew Howel
+  m_Text: Andrew Howell
 --- !u!222 &514521065
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1028,7 +1028,7 @@ Transform:
   m_GameObject: {fileID: 710076681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.005, y: 1.005, z: 1}
   m_Children:
   - {fileID: 514521063}
   m_Father: {fileID: 677125264}
@@ -1947,7 +1947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1266496610
 Transform:
   m_ObjectHideFlags: 0
@@ -2442,7 +2442,7 @@ RectTransform:
   m_GameObject: {fileID: 1512011719}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.995, y: 0.995, z: 1}
   m_Children:
   - {fileID: 1156454076}
   m_Father: {fileID: 1591780722}
@@ -2596,7 +2596,7 @@ Transform:
   m_GameObject: {fileID: 1591780721}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.005, y: 1.005, z: 1}
   m_Children:
   - {fileID: 1512011720}
   m_Father: {fileID: 677125264}
@@ -3003,7 +3003,7 @@ Transform:
   m_GameObject: {fileID: 1877664416}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.987, y: 1, z: 1}
   m_Children:
   - {fileID: 1887553636}
   m_Father: {fileID: 677125264}
@@ -3084,7 +3084,7 @@ RectTransform:
   m_GameObject: {fileID: 1887553635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.013, y: 1, z: 1}
   m_Children:
   - {fileID: 166043980}
   m_Father: {fileID: 1877664417}
