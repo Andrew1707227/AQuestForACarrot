@@ -111,4 +111,7 @@ public class PlayerHealthScript : MonoBehaviour {
     public static float GetLives() {
         return currLives;
     }
+    public static void SetLives(float lives) {
+        currLives = lives;
+    }
 }

@@ -23,13 +23,14 @@ public class CaveCollapseScript : MonoBehaviour {
     void Start() {
         Asource = GetComponent<AudioSource>();
         ps = GetComponent<ParticleSystem>();
-        collision = GetComponent<PolygonCollider2D>();
+        collision = BossTheme.GetComponent<PolygonCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         timer = 0;
     }
 
     // Update is called once per frame
     void Update()  {
+        if (timer > 5.1) return;
         if (debounce) timer += Time.deltaTime;
         if (timer > 5) {
             Player.GetComponent<PlayerControl>().enabled = true;

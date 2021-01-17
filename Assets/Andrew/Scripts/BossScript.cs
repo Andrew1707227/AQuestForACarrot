@@ -38,10 +38,16 @@ public class BossScript : MonoBehaviour {
                 bossPos = BossClone.transform.position;
             }
         }
-        if (isDead) CarrotTimer += Time.deltaTime;
-        if (CarrotTimer > 2 && CarrotTimer < 2.1) {
+        if (isDead) {
+            CarrotTimer += Time.deltaTime;
+            GameObject.Find("Player").GetComponent<PlayerHealthScript>().enabled = false;
+            GameObject.Find("Player").GetComponent<HealthBarManager>().enabled = false;
+        }
+        if (CarrotTimer > 1.5 && CarrotTimer < 1.6) {
             carrot.SetActive(true);
-            carrot.transform.position = bossPos + new Vector3(-2,2,0);
+            carrot.transform.position = bossPos + new Vector3(-2, 2, 0);
+        } else if (CarrotTimer > .5) {
+            BossClone.GetComponent<BossBunnyHealth>().enabled = false;
         }
         if (PlayerHealthScript.GetLives() <= 0) {
             //reset the boss trigger
