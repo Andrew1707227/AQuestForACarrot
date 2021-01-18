@@ -12526,6 +12526,7 @@ GameObject:
   - component: {fileID: 1333081588}
   - component: {fileID: 1333081589}
   - component: {fileID: 1333081590}
+  - component: {fileID: 1333081591}
   m_Layer: 0
   m_Name: BossBun
   m_TagString: Enemy
@@ -17638,6 +17639,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.44017828, y: -2.6466155}
   m_Size: {x: 2.437267, y: 4.357405}
   m_Direction: 0
+--- !u!114 &1333081591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333081576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d88a2a210ae54b4394196ffa38e529f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 3
 --- !u!1 &1344279246
 GameObject:
   m_ObjectHideFlags: 0

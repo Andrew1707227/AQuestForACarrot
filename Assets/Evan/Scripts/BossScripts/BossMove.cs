@@ -26,26 +26,39 @@ public class BossMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //If moving left 
         if (movingLeft)
         {
+            //Call move and give it a positive number
             move(Vector2.left * 1.1f);
         }
 
-
+        //if moving right
         if (!movingLeft)
         {
+            //Call move and give it a negative number
             move(-Vector2.left * 1.1f);
         }
     }
 
     private void move(Vector2 moveValue)
     {
-        rb2.velocity = moveValue;
+        //If boss is not in yell animation
+        if (BossStillStart.isStarted)
+        {
+            //Add movment to bunny
+            rb2.velocity = moveValue;
+        }
+
+        //Increment currnet move time
         curMoveTime += Time.deltaTime;
 
+        //If timer is greater than time wanted
         if (curMoveTime >= moveTime)
         {
+            //Set moving left to the opposite of itself
             movingLeft = !movingLeft;
+            //Reset curMoveTime
             curMoveTime = 0;
         }
     }
