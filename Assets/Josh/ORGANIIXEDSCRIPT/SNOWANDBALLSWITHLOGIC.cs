@@ -57,10 +57,12 @@ public class SNOWANDBALLSWITHLOGIC : MonoBehaviour
             }
             else
             {
-                transform.position = playerPos + offset;
+                transform.position = BallerPos + offset;
             }
-            force = (playerPos - BallerPos) * scalar;
+            force = (playerPos - BallerPos);
+            force = force.normalized * scalar;
             rb2.AddForce(force, ForceMode2D.Impulse);
+
         }
     }
 
