@@ -5,7 +5,6 @@ using UnityEngine;
 public class CreateSnowball : MonoBehaviour {
 
     public GameObject SnowballTemplate;
-
     public float CoolDown;
     private float TimeRemaining;
 
@@ -19,7 +18,7 @@ public class CreateSnowball : MonoBehaviour {
    
     // Start is called before the first frame update
     void Start() {
-        SnowballTemplate.transform.position = new Vector3(9999, 9999); //im not a bad coder you are
+        SnowballTemplate.transform.position = new Vector3(9990, 9999); //im REALLY not a bad coder you are
         SnowballTemplate.GetComponent<Rigidbody2D>().gravityScale = 0;
 
         ASource = GetComponent<AudioSource>();

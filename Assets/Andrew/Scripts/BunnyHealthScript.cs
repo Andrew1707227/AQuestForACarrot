@@ -30,8 +30,10 @@ public class BunnyHealthScript : MonoBehaviour {
             debounce = true; //keep it from hitting twice
             if (currLives - 1 <= 0) {
                 isDead = true;
-                GetComponent<CoolWanderingGoomba>().enabled = false;
-                GetComponent<BunnyAnimator>().enabled = false;
+                if (GetComponent<CoolWanderingGoomba>() != null) {
+                    GetComponent<CoolWanderingGoomba>().enabled = false;
+                    GetComponent<BunnyAnimator>().enabled = false;
+                }
                 GetComponents<CapsuleCollider2D>()[0].enabled = false;
                 GetComponents<CapsuleCollider2D>()[1].enabled = false;
                 anim.enabled = true;
