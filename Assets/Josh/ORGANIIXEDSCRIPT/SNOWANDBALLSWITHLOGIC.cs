@@ -39,7 +39,7 @@ public class SNOWANDBALLSWITHLOGIC : MonoBehaviour
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
-        sr = player.GetComponent<SpriteRenderer>();
+        sr = Baller.GetComponent<SpriteRenderer>();
         PS = GetComponent<ParticleSystem>();
 
         Vector3 playerPos = player.transform.position;
