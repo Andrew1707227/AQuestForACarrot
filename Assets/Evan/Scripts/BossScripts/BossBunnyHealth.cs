@@ -15,6 +15,10 @@ public class BossBunnyHealth : MonoBehaviour
     private float coolDown;
     //Holds if dead
     private bool isDead;
+    //Holds if timer is started
+    private bool shakeStart = false;
+    //Holds time to wait for screen shake
+    private float shakeWait = 0.4f;
 
     //Component References
     private AudioSource aS;
@@ -22,6 +26,7 @@ public class BossBunnyHealth : MonoBehaviour
     private hitEffect hitEffect;
     private Animator anim;
     private ParticleSystem ps;
+    private CameraScript cS; 
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +37,7 @@ public class BossBunnyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         hitEffect = GetComponent<hitEffect>();
         ps = GetComponent<ParticleSystem>();
+        cS = GameObject.Find("Main Camera").GetComponent<CameraScript>();
 
         //Set up current lives
         currLives = maxLives;
@@ -57,6 +63,9 @@ public class BossBunnyHealth : MonoBehaviour
                 //start particles and sound effect when animation hits floor
                 ps.Play();
                 aS.PlayDelayed(0.2f);
+
+                //Sets shake start to true
+                shakeStart = true;
 
                 //deactivate other scripts
                 gameObject.GetComponent<BossMove>().enabled = false;
@@ -95,6 +104,22 @@ public class BossBunnyHealth : MonoBehaviour
             //Reset BunInvuln and cooldown
             BunInvuln = false;
             coolDown = 0;
+        }
+
+        //If shakeStart is true
+        if (shakeStart)
+        {
+            //Increment timer down to zero and then start screen shake
+            if (shakeWait > 0)
+            {
+                shakeWait -= Time.deltaTime;
+            }
+            else
+            {
+                cS.StartShake();
+                //Turn of shakeStart
+                shakeStart = false;
+            }
         }
     }
 
