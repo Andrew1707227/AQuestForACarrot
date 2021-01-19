@@ -12,7 +12,7 @@ public class BossStillStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        isStarted = false;  
     }
 
     // Update is called once per frame

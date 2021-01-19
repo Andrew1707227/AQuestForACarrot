@@ -31814,7 +31814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLives: 3
+  maxLives: 2
 --- !u!114 &771801913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38830,7 +38830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d894bd2746228448d76f781cb0cb19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLives: 5
+  maxLives: 3
 --- !u!114 &993986739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69180,7 +69180,7 @@ MonoBehaviour:
   player: {fileID: 1739297849}
   Baller: {fileID: 771801909}
   offset: {x: 1, y: -1, z: 0}
-  yOffset: 4
+  yOffset: 2
   offMap: -50
 --- !u!212 &1933200433
 SpriteRenderer:
@@ -69528,7 +69528,7 @@ PolygonCollider2D:
       - {x: 39.785156, y: -20.466797}
       - {x: 42.60752, y: -14.390182}
       - {x: 37.104897, y: -18.394062}
-      - {x: 42.667336, y: -12.125573}
+      - {x: 42.771908, y: -10.506705}
       - {x: 38.936153, y: -16.179007}
       - {x: 33.57757, y: -17.114943}
       - {x: 29.195045, y: -12.93523}
@@ -69543,13 +69543,6 @@ PolygonCollider2D:
       - {x: 26.824219, y: -8.490234}
       - {x: 24.9375, y: -7.751953}
       - {x: 23.953125, y: -7.341797}
-      - {x: 23.707031, y: -6.2753906}
-      - {x: 22.804688, y: -4.6347656}
-      - {x: 22.558594, y: -4.2246094}
-      - {x: 21.738281, y: -3.5683594}
-      - {x: 20.34375, y: -3.5683594}
-      - {x: 18.867188, y: -3.8144531}
-      - {x: 18.128906, y: -5.126953}
       - {x: 17.0625, y: -6.5214844}
       - {x: 16.242188, y: -6.6035156}
       - {x: 14.9296875, y: -6.357422}
