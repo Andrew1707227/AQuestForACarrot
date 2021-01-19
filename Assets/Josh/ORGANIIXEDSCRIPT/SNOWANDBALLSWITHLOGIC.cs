@@ -18,6 +18,7 @@ public class SNOWANDBALLSWITHLOGIC : MonoBehaviour
 
     private bool direction;
     public Vector3 offset; //So the snowball is in player's hand
+    public float yOffset;
     private ParticleSystem PS;
 
     public float offMap;
@@ -59,8 +60,8 @@ public class SNOWANDBALLSWITHLOGIC : MonoBehaviour
             {
                 transform.position = BallerPos + offset;
             }
-            force = (playerPos - BallerPos);
-            force = force.normalized * scalar;
+            force = playerPos - BallerPos;
+            force = force.normalized * scalar + Vector2.up * yOffset;
             rb2.AddForce(force, ForceMode2D.Impulse);
 
         }
