@@ -19,7 +19,9 @@ public class StartGame : MonoBehaviour
     {
         GameObject videoPlayer = GameObject.Find("Video Player");
         vp = videoPlayer.GetComponent<VideoPlayer>();
-
+        if (Application.platform == RuntimePlatform.WebGLPlayer) {
+            vp.url = System.IO.Path.Combine(Application.streamingAssetsPath, "StartCutscene.mp4");
+        }
         firstFrame = GameObject.Find("FirstFrame");
     }
 

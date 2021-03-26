@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,9 @@ public class WinSceneChange : MonoBehaviour {
     void Start() {
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         vp = GetComponent<VideoPlayer>();
+        if (Application.platform == RuntimePlatform.WebGLPlayer) {
+            vp.url = System.IO.Path.Combine(Application.streamingAssetsPath, "WinningCutscene.mp4");
+        }
         vidStarted = false;
         Text.GetComponent<Text>().enabled = false;
         vp.Prepare();
